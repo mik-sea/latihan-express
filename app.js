@@ -62,13 +62,17 @@ app.delete("/movies/:id",(req,res)=>{
 app.put("/movies/:id",(req,res) =>{
   const { id } = req.params
   const data = req.body
+  // find index terlebih dahulu
   const elem = movies.findIndex((item) => item.id == id)
+  // jika elem index lebih dari sama dengan 0 maka data akan keubah
   if(elem >= 0){
     movies[elem].id = data.id
     movies[elem].title = data.title
     movies[elem].year = data.year
     res.json("data berhasil diubah")
-  }else{
+  }
+  // jika elem index tidak ditemukan maka data gagal diubah
+  else{
     res.json("data gagal diubah")
   }
 })
